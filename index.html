@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+
+    <div class="container text-center">
+        <h1>Ta Te Ti</h1>
+        <br>
+        <button id="btn1A" onclick="cambiarAoX('btn1A')" class="boton" >1</button><button id="btn1B"
+            onclick="cambiarAoX('btn1B')" class="boton">2</button><button id="btn1C" onclick="cambiarAoX('btn1C')"
+            class="boton">3</button><br>
+        <button id="btn2A" onclick="cambiarAoX('btn2A')" class="boton">4</button><button id="btn2B"
+            onclick="cambiarAoX('btn2B')" class="boton">5</button><button id="btn2C" onclick="cambiarAoX('btn2C')"
+            class="boton">6</button><br>
+        <button id="btn3A" onclick="cambiarAoX('btn3A')" class="boton">7</button><button id="btn3B"
+            onclick="cambiarAoX('btn3B')" class="boton">8</button><button id="btn3C" onclick="cambiarAoX('btn3C')"
+            class="boton">9</button><br>
+        <label id="lblResultado"></label>
+        <br>
+        <button id="btnJugarDeNuevo" onclick="empezarJuego(btnJugarDeNuevo)" class="jugarDeNuevo"> Jugar de nuevo </button>
+
+    </div>
+
+    <script>
+        let contador = 1;
+        function cambiarAoX(boton) {
+            if (contador % 2 == 0) {
+                document.getElementById(boton).innerHTML = "O";
+                document.getElementById(boton).disabled = true;
+                document.getElementById(boton).style.backgroundColor = "lightblue";
+                terminarJuego(contador);
+                contador++;
+                console.log(contador);
+            } else {
+                document.getElementById(boton).innerHTML = "X";
+                document.getElementById(boton).disabled = true;
+                document.getElementById(boton).style.backgroundColor = "lightsalmon";
+                terminarJuego(contador);
+                contador++;
+                console.log(contador);
+            }
+        }
+
+        function empezarJuego(boton) {
+            document.location.reload(true);
+        }
+
+        function terminarJuego(contador) {
+            if (contador > 4) {
+                var boton1 = document.getElementById("btn1A").innerHTML;
+                var boton2 = document.getElementById("btn1B").innerHTML;
+                var boton3 = document.getElementById("btn1C").innerHTML;
+                var boton4 = document.getElementById("btn2A").innerHTML;
+                var boton5 = document.getElementById("btn2B").innerHTML;
+                var boton6 = document.getElementById("btn2C").innerHTML;
+                var boton7 = document.getElementById("btn3A").innerHTML;
+                var boton8 = document.getElementById("btn3B").innerHTML;
+                var boton9 = document.getElementById("btn3C").innerHTML;
+
+                if (boton1 == boton2 && boton1 == boton3 || boton4 == boton5 && boton4 == boton6 || boton7 == boton8 && boton7 == boton9) {
+                    console.log("ganaste linea");
+                    document.getElementById("lblResultado").innerHTML = "Ganaste Linea";
+                    DevolverGanador(contador);
+                    terminar();
+                    PintarGanadorLinea();
+                } else if (boton1 == boton4 && boton4 == boton7 || boton2 == boton5 && boton5 == boton8 || boton3 == boton6 && boton6 == boton9) {
+                    console.log("ganaste columna");
+                    document.getElementById("lblResultado").innerHTML = "Ganaste Columna";
+                    DevolverGanador(contador);
+                    terminar();
+                    PintarGanadorColumna();
+                } else if (boton1 == boton5 && boton5 == boton9 || boton3 == boton5 && boton5 == boton7) {
+                    console.log("ganaste diagonal");
+                    document.getElementById("lblResultado").innerHTML = "Ganaste Diagonal";
+                    DevolverGanador(contador);
+                    terminar();
+                    PintarGanadorDiagonal();
+                } else if (contador == 9) {
+                    document.getElementById("lblResultado").innerHTML = "Empate...";
+                }
+            }
+        }
+
+        function DevolverGanador(contador) {
+            if (contador % 2 == 0) {
+                document.getElementById("lblResultado").innerHTML = "El ganador es el O!";
+            } else {
+                document.getElementById("lblResultado").innerHTML = "El ganador es la X!";
+            }
+        }
+
+        function PintarGanadorLinea() {
+            var boton1 = document.getElementById("btn1A").innerHTML;
+            var boton2 = document.getElementById("btn1B").innerHTML;
+            var boton3 = document.getElementById("btn1C").innerHTML;
+            var boton4 = document.getElementById("btn2A").innerHTML;
+            var boton5 = document.getElementById("btn2B").innerHTML;
+            var boton6 = document.getElementById("btn2C").innerHTML;
+            var boton7 = document.getElementById("btn3A").innerHTML;
+            var boton8 = document.getElementById("btn3B").innerHTML;
+            var boton9 = document.getElementById("btn3C").innerHTML;
+
+            if (boton1 == boton2 && boton1 == boton3) {
+                document.getElementById("btn1A").style.backgroundColor = "lime";
+                document.getElementById("btn1B").style.backgroundColor = "lime";
+                document.getElementById("btn1C").style.backgroundColor = "lime";
+            } else if (boton4 == boton5 && boton4 == boton6) {
+                document.getElementById("btn2A").style.backgroundColor = "lime";
+                document.getElementById("btn2B").style.backgroundColor = "lime";
+                document.getElementById("btn2C").style.backgroundColor = "lime";
+            } else {
+                document.getElementById("btn3A").style.backgroundColor = "lime";
+                document.getElementById("btn3B").style.backgroundColor = "lime";
+                document.getElementById("btn3C").style.backgroundColor = "lime";
+            }
+        }
+
+
+        function PintarGanadorColumna() {
+            var boton1 = document.getElementById("btn1A").innerHTML;
+            var boton2 = document.getElementById("btn1B").innerHTML;
+            var boton3 = document.getElementById("btn1C").innerHTML;
+            var boton4 = document.getElementById("btn2A").innerHTML;
+            var boton5 = document.getElementById("btn2B").innerHTML;
+            var boton6 = document.getElementById("btn2C").innerHTML;
+            var boton7 = document.getElementById("btn3A").innerHTML;
+            var boton8 = document.getElementById("btn3B").innerHTML;
+            var boton9 = document.getElementById("btn3C").innerHTML;
+
+            if (boton1 == boton4 && boton4 == boton7) {
+                document.getElementById("btn1A").style.backgroundColor = "lime";
+                document.getElementById("btn2A").style.backgroundColor = "lime";
+                document.getElementById("btn3A").style.backgroundColor = "lime";
+            } else if (boton2 == boton5 && boton5 == boton8) {
+                document.getElementById("btn1B").style.backgroundColor = "lime";
+                document.getElementById("btn2B").style.backgroundColor = "lime";
+                document.getElementById("btn3B").style.backgroundColor = "lime";
+            } else {
+                document.getElementById("btn1C").style.backgroundColor = "lime";
+                document.getElementById("btn2C").style.backgroundColor = "lime";
+                document.getElementById("btn3C").style.backgroundColor = "lime";
+            }
+        }
+
+        function PintarGanadorDiagonal() {
+            var boton1 = document.getElementById("btn1A").innerHTML;
+            var boton3 = document.getElementById("btn1C").innerHTML;
+            var boton5 = document.getElementById("btn2B").innerHTML;
+            var boton7 = document.getElementById("btn3A").innerHTML;
+            var boton9 = document.getElementById("btn3C").innerHTML;
+
+            if (boton1 == boton5 && boton5 == boton9) {
+                document.getElementById("btn1A").style.backgroundColor = "lime";
+                document.getElementById("btn2B").style.backgroundColor = "lime";
+                document.getElementById("btn3C").style.backgroundColor = "lime";
+            } else {
+                document.getElementById("btn1C").style.backgroundColor = "lime";
+                document.getElementById("btn2B").style.backgroundColor = "lime";
+                document.getElementById("btn3A").style.backgroundColor = "lime";
+            }
+        }
+
+        function terminar() {
+            document.getElementById("btn1A").disabled = true;
+            document.getElementById("btn1B").disabled = true;
+            document.getElementById("btn1C").disabled = true;
+            document.getElementById("btn2A").disabled = true;
+            document.getElementById("btn2B").disabled = true;
+            document.getElementById("btn2C").disabled = true;
+            document.getElementById("btn3A").disabled = true;
+            document.getElementById("btn3B").disabled = true;
+            document.getElementById("btn3C").disabled = true;
+        }
+    </script>
+
+</body>
+
+</html>
