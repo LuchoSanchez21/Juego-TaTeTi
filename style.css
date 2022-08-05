@@ -15,6 +15,8 @@
 }
 body {
     background-image: url('Img/Imagen-Juego.png');
+    font-family: 'Mouse Memoirs', sans-serif;
+    font-size: 30px;
 }
 
 h1 {
@@ -22,7 +24,7 @@ h1 {
     color: rgb(210, 236, 62);
     text-shadow: 3px 3px 5px black;
     font-family: 'Mouse Memoirs', sans-serif;
-    font-size: 50px;
+    font-size: 55px;
 }
 
 #lblResultado {
